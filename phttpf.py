@@ -13,12 +13,12 @@ data = response.json()
 country = data['countryCode']
 bloked = ['RU', 'KR', 'KP']
 
-def headers(headers):
+def init():
   if country in bloked:
     print(f"{Fore.RED}Unsuported country")
     return False
-  print(f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}] Wait for checking headers")
+  print(f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}] Checking")
   response = requests.get(url)
   with open(cilovy_soubor, 'wb') as soubor:
     soubor.write(response.content)
-  print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] Working Headers: {headers}")
+  print(f"{Fore.WHITE}[{Fore.GREEN}+{Fore.WHITE}] PHTTPF Running")
